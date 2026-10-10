@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  local-rag:
+    build: .
+    container_name: local_rag_app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      # Mount folder PDF Mac user ke dalam container (read-only)
+      - /Users/nama_user/Downloads/Contoh_pdf:/app/source_pdfs:ro
+      # Mount folder data agar database SQLite & JSON tersimpan persisten di Mac user
+      - ./data:/app/data
+      - ./reports:/app/reports
