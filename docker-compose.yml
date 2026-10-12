@@ -14,6 +14,8 @@ services:
     volumes:
       # Mount folder PDF (bisa di-custom via PDF_SOURCE_PATH di .env, default: ./source_pdfs)
       - ${PDF_SOURCE_PATH:-./source_pdfs}:/app/source_pdfs:ro
+      # Mount folder source code agar perubahan live tanpa perlu rebuild
+      - ./src:/app/src
       # Mount folder data agar database SQLite tersimpan persisten di host
       - ./data:/app/data
       - ./reports:/app/reports
